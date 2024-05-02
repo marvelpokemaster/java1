@@ -73,5 +73,21 @@ public class MyDatabaseHelper {
             e.printStackTrace();
         }
     }
+    public static boolean emailExists(String email) {
+        boolean exists = false;
+        try (Connection connection = DriverManager.getConnection(URL, USER, PASSWORD)) {
+            String selectQuery = "SELECT COUNT(*) AS count FROM mytable WHERE email = ?";
+            PreparedStatement preparedStatement = connection.prepareStatement(selectQuery);
+            preparedStatement.setString(1, email);
 
+            ResultSet resultSet = preparedStatement.executeQuery();
+            if (resultSet.next()) {
+                int count = resultSet.getInt("count");
+                exists = count > 0;
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return exists;
+    }
 }
