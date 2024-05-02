@@ -6,4 +6,4 @@ The class MyDatabaseHelper has 3 functions:
 - updateRow()    : it modifies student detail for a given email
 - emailExists()  : it checks if a given email exists in the database
 
-Date format : yyyy-mm-dd
+Date format : `yyyy-mm-dd`
