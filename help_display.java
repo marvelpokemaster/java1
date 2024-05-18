@@ -15,7 +15,6 @@ try {
         int sgpa1 = resultSet.getInt("sgpa1");
         int sgpa2 = resultSet.getInt("sgpa2");
         Date lib = resultSet.getDate("lib");
-        int indiscipline = resultSet.getInt("indiscipline");
 
         // Now you can use the retrieved data as needed
         System.out.println("ID: " + id);
@@ -28,7 +27,6 @@ try {
         System.out.println("SGPA1: " + sgpa1);
         System.out.println("SGPA2: " + sgpa2);
         System.out.println("Library Date: " + lib);
-        System.out.println("Indiscipline: " + indiscipline);
     } else {
         // Handle case when no rows are returned for the given email
         System.out.println("No data found for the provided email.");
