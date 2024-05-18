@@ -14,7 +14,5 @@ CREATE TABLE mytable (
     fee_initial INT,
     sgpa1 INT,
     sgpa2 INT,
-    lib DATE,
-    indiscipline INT
-    
+    lib DATE,   
 );
