@@ -7,10 +7,10 @@ public class MyDatabaseHelper {
     private static final String PASSWORD = "password";
 
     public static void insertRow(String email, String password, String name, String roll, String school,
-                                 String specialisation, int fee_initial, int sgpa1, int sgpa2, String lib, int indiscipline) {
+                                 String specialisation, int fee_initial, int sgpa1, int sgpa2, String lib) {
         try (Connection connection = DriverManager.getConnection(URL, USER, PASSWORD)) {
             String insertQuery = "INSERT INTO mytable (email, password, name, roll, school, specialisation, " +
-                    "fee_initial, sgpa1, sgpa2, lib, indiscipline) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+                    "fee_initial, sgpa1, sgpa2, lib) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
             PreparedStatement preparedStatement = connection.prepareStatement(insertQuery);
 
             preparedStatement.setString(1, email);
@@ -23,7 +23,6 @@ public class MyDatabaseHelper {
             preparedStatement.setInt(8, sgpa1);
             preparedStatement.setInt(9, sgpa2);
             preparedStatement.setDate(10, Date.valueOf(lib));
-            preparedStatement.setInt(11, indiscipline);
 
             int rowsAffected = preparedStatement.executeUpdate();
             System.out.println("Rows inserted: " + rowsAffected);
@@ -45,13 +44,12 @@ public class MyDatabaseHelper {
         }
         return resultSet;
     }
+
     public static void updateRow(String email, String newPassword, String newName, String newRoll, String newSchool,
-                            String newSpecialisation, int newFeeInitial, int newSGPA1, int newSGPA2, String newLib,
-                            int newIndiscipline) {
-                                
+                                 String newSpecialisation, int newFeeInitial, int newSGPA1, int newSGPA2, String newLib) {
         try (Connection connection = DriverManager.getConnection(URL, USER, PASSWORD)) {
             String updateQuery = "UPDATE mytable SET password = ?, name = ?, roll = ?, school = ?, specialisation = ?, " +
-                    "fee_initial = ?, sgpa1 = ?, sgpa2 = ?, lib = ?, indiscipline = ? WHERE email = ?";
+                    "fee_initial = ?, sgpa1 = ?, sgpa2 = ?, lib = ? WHERE email = ?";
             PreparedStatement preparedStatement = connection.prepareStatement(updateQuery);
 
             preparedStatement.setString(1, newPassword);
@@ -63,16 +61,15 @@ public class MyDatabaseHelper {
             preparedStatement.setInt(7, newSGPA1);
             preparedStatement.setInt(8, newSGPA2);
             preparedStatement.setDate(9, Date.valueOf(newLib));
-            preparedStatement.setInt(10, newIndiscipline);
-            preparedStatement.setString(11, email);
+            preparedStatement.setString(10, email);
 
             int rowsAffected = preparedStatement.executeUpdate();
             System.out.println("Rows updated: " + rowsAffected);
-        }
-        catch (SQLException e) {
+        } catch (SQLException e) {
             e.printStackTrace();
         }
     }
+
     public static boolean emailExists(String email) {
         boolean exists = false;
         try (Connection connection = DriverManager.getConnection(URL, USER, PASSWORD)) {
