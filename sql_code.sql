@@ -1,18 +1,12 @@
-DROP DATABASE IF EXISTS mydatabase;
-CREATE DATABASE mydatabase;
+CREATE DATABASE AmritaDB;
 
-USE mydatabase;
+USE AmritaDB;
 
-CREATE TABLE mytable (
-    id INT AUTO_INCREMENT PRIMARY KEY,
-    email VARCHAR(50),
-    password VARCHAR(50),
-    name VARCHAR(50),
-    roll VARCHAR(50),
+CREATE TABLE students (
+    roll_no VARCHAR(20) PRIMARY KEY,
     school VARCHAR(50),
-    specialisation VARCHAR(50),
-    fee_initial INT,
-    sgpa1 INT,
-    sgpa2 INT,
-    lib DATE,   
+    branch VARCHAR(50),
+    sgpa1 DOUBLE,
+    sgpa2 DOUBLE,
+    beforeFee DOUBLE
 );
