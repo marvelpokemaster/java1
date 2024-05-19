@@ -1,8 +1,6 @@
-
 package com.mycompany.javaproject;
 
 import java.sql.*;
-
 import java.util.Scanner;
 
 abstract class Amrita {
@@ -34,6 +32,30 @@ abstract class Amrita {
 
     protected void printCGPA(double cgpa) {
         System.out.println("YOUR CGPA IS " + cgpa);
+    }
+
+    public String getRollNo() {
+        return roll_no;
+    }
+
+    public String getSchool() {
+        return school;
+    }
+
+    public String getBranch() {
+        return branch;
+    }
+
+    public double getSgpa1() {
+        return sgpa1;
+    }
+
+    public double getSgpa2() {
+        return sgpa2;
+    }
+
+    public double getBeforeFee() {
+        return beforeFee;
     }
 }
 
@@ -147,10 +169,11 @@ class RAI extends ASE {
     }
 }
 
-public class JAVAPROJECT {
+public class Javaproject {
 
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
+        DatabaseHelper ob= new DatabaseHelper();
 
         System.out.println("WELCOME TO AMRITA SCHOOL OF COMPUTING");
         System.out.print("ENTER YOUR SCHOOL: ");
@@ -166,6 +189,7 @@ public class JAVAPROJECT {
             double sgpa2 = sc.nextDouble();
             System.out.print("Enter beforeFee: ");
             double beforeFee = sc.nextDouble();
+            sc.nextLine();
 
             Amrita student = null;
             switch (school.toUpperCase()) {
@@ -182,7 +206,7 @@ public class JAVAPROJECT {
                     student = new CSEDA(roll_no, "Amrita School of Computing", school, sgpa1, sgpa2, beforeFee);
                     break;
             }
-            student.calculateFee();
+            display(roll_no);
         } else if (school.equalsIgnoreCase("ELC") || school.equalsIgnoreCase("EEE") ||
                 school.equalsIgnoreCase("RA") || school.equalsIgnoreCase("RAI")) {
             System.out.println("WELCOME TO AMRITA SCHOOL OF ENGINEERING");
@@ -216,5 +240,24 @@ public class JAVAPROJECT {
             System.out.println("YOU ARE NOT A STUDENT OF AMRITA SCHOOL");
         }
         sc.close();
+    }
+
+    
+     static void display(String roll_no) {
+        try {
+            ResultSet rs = DatabaseHelper.selectRow(roll_no);
+            if (rs != null && rs.next()) {
+                System.out.println("Roll No: " + rs.getString("roll_no"));
+                System.out.println("School: " + rs.getString("school"));
+                System.out.println("Branch: " + rs.getString("branch"));
+                System.out.println("SGPA1: " + rs.getDouble("sgpa1"));
+                System.out.println("SGPA2: " + rs.getDouble("sgpa2"));
+                System.out.println("Before Fee: " + rs.getDouble("beforeFee"));
+            } else {
+                System.out.println("No student found with roll number: " + roll_no);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
     }
 }
