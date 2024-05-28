@@ -3,10 +3,12 @@ CREATE DATABASE AmritaDB;
 USE AmritaDB;
 
 CREATE TABLE students (
-    roll_no VARCHAR(20) PRIMARY KEY,
+    roll_no VARCHAR(50) PRIMARY KEY,
+    password VARCHAR(50),
     school VARCHAR(50),
     branch VARCHAR(50),
     sgpa1 DOUBLE,
     sgpa2 DOUBLE,
-    beforeFee DOUBLE
+    cgpa DOUBLE,
+    fee DOUBLE
 );
