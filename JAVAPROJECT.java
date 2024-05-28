@@ -206,7 +206,8 @@ public class Javaproject {
                     student = new CSEDA(roll_no, "Amrita School of Computing", school, sgpa1, sgpa2, beforeFee);
                     break;
             }
-            display(roll_no);
+            ob.saveStudentToDatabase(student);
+
         } else if (school.equalsIgnoreCase("ELC") || school.equalsIgnoreCase("EEE") ||
                 school.equalsIgnoreCase("RA") || school.equalsIgnoreCase("RAI")) {
             System.out.println("WELCOME TO AMRITA SCHOOL OF ENGINEERING");
@@ -224,9 +225,12 @@ public class Javaproject {
             switch (school.toUpperCase()) {
                 case "ELC":
                     student = new ELC(roll_no, "Amrita School of Engineering", school, sgpa1, sgpa2, beforeFee);
+                    
+        
                     break;
                 case "EEE":
                     student = new EEE(roll_no, "Amrita School of Engineering", school, sgpa1, sgpa2, beforeFee);
+                    
                     break;
                 case "RA":
                     student = new RA(roll_no, "Amrita School of Engineering", school, sgpa1, sgpa2, beforeFee);
@@ -234,12 +238,16 @@ public class Javaproject {
                 case "RAI":
                     student = new RAI(roll_no, "Amrita School of Engineering", school, sgpa1, sgpa2, beforeFee);
                     break;
+                    
             }
             student.calculateFee();
+            ob.saveStudentToDatabase(student);
+
         } else {
             System.out.println("YOU ARE NOT A STUDENT OF AMRITA SCHOOL");
         }
         sc.close();
+        
     }
 
     
