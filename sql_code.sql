@@ -9,6 +9,5 @@ CREATE TABLE students (
     branch VARCHAR(50),
     sgpa1 DOUBLE,
     sgpa2 DOUBLE,
-    cgpa DOUBLE,
-    fee DOUBLE
+    beforefee DOUBLE
 );
