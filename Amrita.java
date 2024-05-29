@@ -1,160 +1,147 @@
 package com.mycompany.javaproject;
-
-import java.sql.*;
-import java.util.Scanner;
+import java.util.*;
 
 abstract class Amrita {
-    private String rollNo;
-    private String password;
+    private String roll_no;
     private String school;
     private String branch;
     private double sgpa1;
     private double sgpa2;
-    private double cgpa;
-    private double fee;
+    double beforeFee;
+    private String password;
 
-    public Amrita(String rollNo, String password, String school, String branch, double sgpa1, double sgpa2, double cgpa) {
-        this.rollNo = rollNo;
+    public Amrita(String roll_no, String password, String school, String branch, double sgpa1, double sgpa2, double beforeFee) {
+        this.roll_no = roll_no;
         this.password = password;
         this.school = school;
         this.branch = branch;
         this.sgpa1 = sgpa1;
         this.sgpa2 = sgpa2;
-        this.cgpa = cgpa;
-        this.fee = 0.0;
+        this.beforeFee = beforeFee;
     }
 
-    public String getRollNo() {
-        return rollNo;
+    public abstract void calculateFee();
+
+    protected double calculateCGPA() {
+        return (sgpa1 + sgpa2) / 2;
     }
 
-    public String getPassword() {
-        return password;
+    protected void printBeforeFee() {
+        System.out.println("YOUR BEFORE FEE IS " + this.beforeFee);
     }
 
-    public String getSchool() {
-        return school;
+    protected void printCGPA(double cgpa) {
+        System.out.println("YOUR CGPA IS " + cgpa);
     }
-
-    public String getBranch() {
-        return branch;
-    }
-
-    public double getSgpa1() {
-        return sgpa1;
-    }
-
-    public double getSgpa2() {
-        return sgpa2;
-    }
-
-    public double getCgpa() {
-        return cgpa;
-    }
-
-    public double getFee() {
-        return fee;
-    }
-
-    public void setFee(double fee) {
-        this.fee = fee;
-    }
-
-    abstract void calculateFee();
 }
 
-class CSE extends Amrita {
-    public CSE(String rollNo, String password, String school, String branch, double sgpa1, double sgpa2, double cgpa) {
-        super(rollNo, password, school, branch, sgpa1, sgpa2, cgpa);
+class ASC extends Amrita {
+    public ASC(String roll_no, String password, String school, String branch, double sgpa1, double sgpa2, double beforeFee) {
+        super(roll_no, password, school, branch, sgpa1, sgpa2, beforeFee);
     }
 
     @Override
-    void calculateFee() {
-        double fee = 10000; // Example fee calculation
-        setFee(fee);
+    public void calculateFee() {
+        double cgpa = calculateCGPA();
+        printBeforeFee();
+        printCGPA(cgpa);
+        if (beforeFee <= 250000) {
+            if (cgpa < 10 && cgpa > 0) {
+                if (cgpa >= 8.5) {
+                    System.out.println("CONGRATS! YOU ARE ELIGIBLE FOR SCHOLARSHIP");
+                    System.out.print("YOUR CURRENT FEE SLAB IS ");
+                    if (cgpa >= 8) {
+                        System.out.println("SLAB 1");
+                    } else if (cgpa >= 7.5) {
+                        System.out.println("SLAB 2");
+                    }
+                } else {
+                    System.out.println("YOU ARE MOVED TO SLAB 3");
+                }
+            }
+        } else {
+            System.out.println("YOURS IS NON-SCHOLARSHIP FEE");
+            System.out.println("SO YOUR FEE IS " + beforeFee);
+        }
     }
 }
 
-class CSEAI extends Amrita {
-    public CSEAI(String rollNo, String password, String school, String branch, double sgpa1, double sgpa2, double cgpa) {
-        super(rollNo, password, school, branch, sgpa1, sgpa2, cgpa);
+class CSE extends ASC {
+    public CSE(String roll_no, String password, String school, String branch, double sgpa1, double sgpa2, double beforeFee) {
+        super(roll_no, password, school, branch, sgpa1, sgpa2, beforeFee);
+    }
+}
+
+class CSEAI extends ASC {
+    public CSEAI(String roll_no, String password, String school, String branch, double sgpa1, double sgpa2, double beforeFee) {
+        super(roll_no, password, school, branch, sgpa1, sgpa2, beforeFee);
+    }
+}
+
+class CSECS extends ASC {
+    public CSECS(String roll_no, String password, String school, String branch, double sgpa1, double sgpa2, double beforeFee) {
+        super(roll_no, password, school, branch, sgpa1, sgpa2, beforeFee);
+    }
+}
+
+class CSEDA extends ASC {
+    public CSEDA(String roll_no, String password, String school, String branch, double sgpa1, double sgpa2, double beforeFee) {
+        super(roll_no, password, school, branch, sgpa1, sgpa2, beforeFee);
+    }
+}
+
+class ASE extends Amrita {
+    public ASE(String roll_no, String password, String school, String branch, double sgpa1, double sgpa2, double beforeFee) {
+        super(roll_no, password, school, branch, sgpa1, sgpa2, beforeFee);
     }
 
     @Override
-    void calculateFee() {
-        double fee = 12000; // Example fee calculation
-        setFee(fee);
+    public void calculateFee() {
+        double cgpa = calculateCGPA();
+        printBeforeFee();
+        printCGPA(cgpa);
+        if (beforeFee <= 250000) {
+            if (cgpa < 10 && cgpa > 0) {
+                if (cgpa >= 7.5) {
+                    System.out.println("CONGRATS! YOU ARE ELIGIBLE FOR SCHOLARSHIP");
+                    System.out.print("YOUR CURRENT FEE SLAB IS ");
+                    if (cgpa >= 8.5) {
+                        System.out.println("SLAB 1");
+                    } else if (cgpa >= 7.5) {
+                        System.out.println("SLAB 2");
+                    }
+                } else {
+                    System.out.println("YOU ARE MOVED TO SLAB 3");
+                }
+            }
+        } else {
+            System.out.println("YOURS IS NON-SCHOLARSHIP FEE");
+            System.out.println("SO YOUR FEE IS " + beforeFee);
+        }
     }
 }
 
-class CSECS extends Amrita {
-    public CSECS(String rollNo, String password, String school, String branch, double sgpa1, double sgpa2, double cgpa) {
-        super(rollNo, password, school, branch, sgpa1, sgpa2, cgpa);
-    }
-
-    @Override
-    void calculateFee() {
-        double fee = 11000; // Example fee calculation
-        setFee(fee);
+class ELC extends ASE {
+    public ELC(String roll_no, String password, String school, String branch, double sgpa1, double sgpa2, double beforeFee) {
+        super(roll_no, password, school, branch, sgpa1, sgpa2, beforeFee);
     }
 }
 
-class CSEDA extends Amrita {
-    public CSEDA(String rollNo, String password, String school, String branch, double sgpa1, double sgpa2, double cgpa) {
-        super(rollNo, password, school, branch, sgpa1, sgpa2, cgpa);
-    }
-
-    @Override
-    void calculateFee() {
-        double fee = 13000; // Example fee calculation
-        setFee(fee);
+class EEE extends ASE {
+    public EEE(String roll_no, String password, String school, String branch, double sgpa1, double sgpa2, double beforeFee) {
+        super(roll_no, password, school, branch, sgpa1, sgpa2, beforeFee);
     }
 }
 
-class ELC extends Amrita {
-    public ELC(String rollNo, String password, String school, String branch, double sgpa1, double sgpa2, double cgpa) {
-        super(rollNo, password, school, branch, sgpa1, sgpa2, cgpa);
-    }
-
-    @Override
-    void calculateFee() {
-        double fee = 14000; // Example fee calculation
-        setFee(fee);
+class RA extends ASE {
+    public RA(String roll_no, String password, String school, String branch, double sgpa1, double sgpa2, double beforeFee) {
+        super(roll_no, password, school, branch, sgpa1, sgpa2, beforeFee);
     }
 }
 
-class EEE extends Amrita {
-    public EEE(String rollNo, String password, String school, String branch, double sgpa1, double sgpa2, double cgpa) {
-        super(rollNo, password, school, branch, sgpa1, sgpa2, cgpa);
-    }
-
-    @Override
-    void calculateFee() {
-        double fee = 15000; // Example fee calculation
-        setFee(fee);
+class RAI extends ASE {
+    public RAI(String roll_no, String password, String school, String branch, double sgpa1, double sgpa2, double beforeFee) {
+        super(roll_no, password, school, branch, sgpa1, sgpa2, beforeFee);
     }
 }
 
-class RA extends Amrita {
-    public RA(String rollNo, String password, String school, String branch, double sgpa1, double sgpa2, double cgpa) {
-        super(rollNo, password, school, branch, sgpa1, sgpa2, cgpa);
-    }
-
-    @Override
-    void calculateFee() {
-        double fee = 16000; // Example fee calculation
-        setFee(fee);
-    }
-}
-
-class RAI extends Amrita {
-    public RAI(String rollNo, String password, String school, String branch, double sgpa1, double sgpa2, double cgpa) {
-        super(rollNo, password, school, branch, sgpa1, sgpa2, cgpa);
-    }
-
-    @Override
-    void calculateFee() {
-        double fee = 17000; // Example fee calculation
-        setFee(fee);
-    }
-}
