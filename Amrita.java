@@ -7,8 +7,10 @@ abstract class Amrita {
     private String branch;
     private double sgpa1;
     private double sgpa2;
-    double beforeFee;
     private String password;
+    double beforeFee;
+    double afterFee;
+
 
     public Amrita(String roll_no, String password, String school, String branch, double sgpa1, double sgpa2, double beforeFee) {
         this.roll_no = roll_no;
@@ -20,7 +22,7 @@ abstract class Amrita {
         this.beforeFee = beforeFee;
     }
 
-    public abstract void calculateFee();
+    public abstract double calculateFee();
 
     protected double calculateCGPA() {
         return (sgpa1 + sgpa2) / 2;
@@ -41,7 +43,7 @@ class ASC extends Amrita {
     }
 
     @Override
-    public void calculateFee() {
+    public double calculateFee() {
         double cgpa = calculateCGPA();
         printBeforeFee();
         printCGPA(cgpa);
@@ -52,17 +54,22 @@ class ASC extends Amrita {
                     System.out.print("YOUR CURRENT FEE SLAB IS ");
                     if (cgpa >= 8) {
                         System.out.println("SLAB 1");
+                        afterFee=150000;
                     } else if (cgpa >= 7.5) {
                         System.out.println("SLAB 2");
+                        afterFee=250000;
                     }
                 } else {
                     System.out.println("YOU ARE MOVED TO SLAB 3");
+                    afterFee=400000;
                 }
             }
         } else {
             System.out.println("YOURS IS NON-SCHOLARSHIP FEE");
             System.out.println("SO YOUR FEE IS " + beforeFee);
+            afterFee=600000;
         }
+        return afterFee;
     }
 }
 
@@ -96,28 +103,33 @@ class ASE extends Amrita {
     }
 
     @Override
-    public void calculateFee() {
+    public double calculateFee() {
         double cgpa = calculateCGPA();
         printBeforeFee();
         printCGPA(cgpa);
         if (beforeFee <= 250000) {
             if (cgpa < 10 && cgpa > 0) {
-                if (cgpa >= 7.5) {
+                if (cgpa >= 8.5) {
                     System.out.println("CONGRATS! YOU ARE ELIGIBLE FOR SCHOLARSHIP");
                     System.out.print("YOUR CURRENT FEE SLAB IS ");
-                    if (cgpa >= 8.5) {
+                    if (cgpa >= 8) {
                         System.out.println("SLAB 1");
+                        afterFee=150000;
                     } else if (cgpa >= 7.5) {
                         System.out.println("SLAB 2");
+                        afterFee=250000;
                     }
                 } else {
                     System.out.println("YOU ARE MOVED TO SLAB 3");
+                    afterFee=400000;
                 }
             }
         } else {
             System.out.println("YOURS IS NON-SCHOLARSHIP FEE");
             System.out.println("SO YOUR FEE IS " + beforeFee);
+            afterFee=600000;
         }
+        return afterFee;
     }
 }
 

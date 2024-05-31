@@ -113,6 +113,11 @@ public class register extends javax.swing.JFrame {
 
         bback.setFont(new java.awt.Font("sansserif", 1, 14)); // NOI18N
         bback.setText("Back");
+        bback.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                bbackActionPerformed(evt);
+            }
+        });
 
         bsubmit.setFont(new java.awt.Font("sansserif", 1, 14)); // NOI18N
         bsubmit.setText("Submit");
@@ -235,6 +240,11 @@ public class register extends javax.swing.JFrame {
         
     }//GEN-LAST:event_bsubmitActionPerformed
 
+    private void bbackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bbackActionPerformed
+        // TODO add your handling code here:
+        
+    }//GEN-LAST:event_bbackActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -300,7 +310,7 @@ public class register extends javax.swing.JFrame {
      public JButton getBsubmit() {
         return bsubmit;
     }
-    public JButton getbback() {
+    public JButton getBback() {
         return bback;
     }
 
