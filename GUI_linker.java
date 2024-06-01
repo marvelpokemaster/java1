@@ -20,7 +20,14 @@ public class GUI_linker {
                 registerMethod();
             }
             else if(isUser(username,password)){
+                login.dispose();
                 Javaproject ob=new Javaproject();
+                //        GUI_linker gui = new GUI_linker();
+                //        gui.loginMethod();
+
+                // Set the frame visible
+                
+
                 System.out.println(ob.sus(username));
             }
             else {
