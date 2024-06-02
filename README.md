@@ -6,6 +6,8 @@ Amrita.java           : is amrita class ,top abstract class
 
 MyDatabaseHelper.java : is the class which helps you with the sql code given in sql_code.sql
                         (help_display is just instructions for implementation)
+                        
+GUI_linker.java       : is the class which links to the UI (login,register), the main class deals with display_gui part
 
 
 The class MyDatabaseHelper has 4 functions:
