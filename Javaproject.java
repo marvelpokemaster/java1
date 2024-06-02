@@ -57,9 +57,6 @@ public class Javaproject {
                         calculatedFee = student.calculateFee();
                         break;
                 }
-                if (student != null) {
-                calculatedFee = student.calculateFee();
-            }
             } else if (branch.equalsIgnoreCase("ELC") || branch.equalsIgnoreCase("EEE") ||
                     branch.equalsIgnoreCase("RA") || branch.equalsIgnoreCase("RAI")) {
                 Amrita student = null;
