@@ -11,7 +11,6 @@ abstract class Amrita {
     double beforeFee;
     double afterFee;
 
-
     public Amrita(String roll_no, String password, String school, String branch, double sgpa1, double sgpa2, double beforeFee) {
         this.roll_no = roll_no;
         this.password = password;
@@ -20,6 +19,70 @@ abstract class Amrita {
         this.sgpa1 = sgpa1;
         this.sgpa2 = sgpa2;
         this.beforeFee = beforeFee;
+    }
+
+    public String getRollNo() {
+        return roll_no;
+    }
+
+    public void setRollNo(String roll_no) {
+        this.roll_no = roll_no;
+    }
+
+    public String getSchool() {
+        return school;
+    }
+
+    public void setSchool(String school) {
+        this.school = school;
+    }
+
+    public String getBranch() {
+        return branch;
+    }
+
+    public void setBranch(String branch) {
+        this.branch = branch;
+    }
+
+    public double getSgpa1() {
+        return sgpa1;
+    }
+
+    public void setSgpa1(double sgpa1) {
+        this.sgpa1 = sgpa1;
+    }
+
+    public double getSgpa2() {
+        return sgpa2;
+    }
+
+    public void setSgpa2(double sgpa2) {
+        this.sgpa2 = sgpa2;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
+    public double getBeforeFee() {
+        return beforeFee;
+    }
+
+    public void setBeforeFee(double beforeFee) {
+        this.beforeFee = beforeFee;
+    }
+
+    public double getAfterFee() {
+        return afterFee;
+    }
+
+    public void setAfterFee(double afterFee) {
+        this.afterFee = afterFee;
     }
 
     public abstract double calculateFee();
@@ -47,29 +110,29 @@ class ASC extends Amrita {
         double cgpa = calculateCGPA();
         printBeforeFee();
         printCGPA(cgpa);
-        if (beforeFee <= 250000) {
+        if (getBeforeFee() <= 250000) {
             if (cgpa < 10 && cgpa > 0) {
                 if (cgpa >= 8.5) {
                     System.out.println("CONGRATS! YOU ARE ELIGIBLE FOR SCHOLARSHIP");
                     System.out.print("YOUR CURRENT FEE SLAB IS ");
                     if (cgpa >= 8) {
                         System.out.println("SLAB 1");
-                        afterFee=150000;
+                        setAfterFee(150000);
                     } else if (cgpa >= 7.5) {
                         System.out.println("SLAB 2");
-                        afterFee=250000;
+                        setAfterFee(250000);
                     }
                 } else {
                     System.out.println("YOU ARE MOVED TO SLAB 3");
-                    afterFee=400000;
+                    setAfterFee(400000);
                 }
             }
         } else {
             System.out.println("YOURS IS NON-SCHOLARSHIP FEE");
-            System.out.println("SO YOUR FEE IS " + beforeFee);
-            afterFee=600000;
+            System.out.println("SO YOUR FEE IS " + getBeforeFee());
+            setAfterFee(600000);
         }
-        return afterFee;
+        return getAfterFee();
     }
 }
 
@@ -107,29 +170,29 @@ class ASE extends Amrita {
         double cgpa = calculateCGPA();
         printBeforeFee();
         printCGPA(cgpa);
-        if (beforeFee <= 250000) {
+        if (getBeforeFee() <= 250000) {
             if (cgpa < 10 && cgpa > 0) {
                 if (cgpa >= 8.5) {
                     System.out.println("CONGRATS! YOU ARE ELIGIBLE FOR SCHOLARSHIP");
                     System.out.print("YOUR CURRENT FEE SLAB IS ");
                     if (cgpa >= 8) {
                         System.out.println("SLAB 1");
-                        afterFee=150000;
+                        setAfterFee(150000);
                     } else if (cgpa >= 7.5) {
                         System.out.println("SLAB 2");
-                        afterFee=250000;
+                        setAfterFee(250000);
                     }
                 } else {
                     System.out.println("YOU ARE MOVED TO SLAB 3");
-                    afterFee=400000;
+                    setAfterFee(400000);
                 }
             }
         } else {
             System.out.println("YOURS IS NON-SCHOLARSHIP FEE");
-            System.out.println("SO YOUR FEE IS " + beforeFee);
-            afterFee=600000;
+            System.out.println("SO YOUR FEE IS : " + getBeforeFee());
+            setAfterFee(600000);
         }
-        return afterFee;
+        return getAfterFee();
     }
 }
 
@@ -156,4 +219,3 @@ class RAI extends ASE {
         super(roll_no, password, school, branch, sgpa1, sgpa2, beforeFee);
     }
 }
-

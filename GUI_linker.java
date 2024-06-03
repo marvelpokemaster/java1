@@ -24,8 +24,6 @@ public class GUI_linker {
                 Javaproject ob=new Javaproject();
                 //        GUI_linker gui = new GUI_linker();
                 //        gui.loginMethod();
-
-                // Set the frame visible
                 
 
                 System.out.println(ob.sus(username));
@@ -59,7 +57,7 @@ public class GUI_linker {
                     double sgpa1 = Double.parseDouble(sgpa1Str);
                     double sgpa2 = Double.parseDouble(sgpa2Str);
                     double beforeFee = Double.parseDouble(beforeFeeStr);
-                    double afterfee = 0.0; // Dummy value for afterfee
+                    double afterfee = 0.0;
 
                     System.out.println("Username: " + username);
                     System.out.println("Password: " + password);
@@ -91,7 +89,7 @@ public class GUI_linker {
     
     try {
         resultSet = DatabaseHelper.selectRow("admin"); // Assign the result of selectRow inside the try block
-        // Check if the ResultSet is not null and move the cursor to the first row
+        //Checks if resulset is not null and it moves cursor to next row
         if (resultSet != null && resultSet.next()) {
             // Retrieve data from the ResultSet
             String roll_no1 = resultSet.getString("roll_no");
@@ -103,7 +101,6 @@ public class GUI_linker {
             double beforefee = resultSet.getDouble("beforefee");
             double afterfee = resultSet.getDouble("afterfee");
             
-            // Process the retrieved data as needed
             System.out.println("Admin User Details:");
             System.out.println("Roll Number: " + roll_no1);
             System.out.println("Password: " + password1);
@@ -139,13 +136,11 @@ private static boolean isUser(String username, String password) {
     
         
 
-  ResultSet resultSet = null; // Declare resultSet outside the try block and initialize it to null
+  ResultSet resultSet = null; 
     
     try {
-        resultSet = DatabaseHelper.selectRow(username); // Assign the result of selectRow inside the try block
-        // Check if the ResultSet is not null and move the cursor to the first row
+        resultSet = DatabaseHelper.selectRow(username); // assign the result of selectRow inside the try block
         if (resultSet != null && resultSet.next()) {
-            // Retrieve data from the ResultSet
             String roll_no1 = resultSet.getString("roll_no");
             String password1 = resultSet.getString("password");
             String school = resultSet.getString("school");
@@ -155,7 +150,6 @@ private static boolean isUser(String username, String password) {
             double beforefee = resultSet.getDouble("beforefee");
             double afterfee = resultSet.getDouble("afterfee");
             
-            // Process the retrieved data as needed
             System.out.println(" User Details:");
             System.out.println("Roll Number: " + roll_no1);
             System.out.println("Password: " + password1);
@@ -174,7 +168,6 @@ private static boolean isUser(String username, String password) {
     } catch (SQLException e) {
         e.printStackTrace();
     } finally {
-        // Close the result set to release database resources
         if (resultSet != null) {
             try {
                 resultSet.close();

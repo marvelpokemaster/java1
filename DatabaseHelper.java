@@ -73,7 +73,7 @@ public class DatabaseHelper {
         }
     }
 
-    public static boolean rollNoExists(String roll_no) {
+    public static boolean rollNoExists(String roll_no) { //count var stores the count of students with roll whatever
         boolean exists = false;
         try (Connection connection = DriverManager.getConnection(URL, USER, PASSWORD)) {
             String selectQuery = "SELECT COUNT(*) AS count FROM students WHERE roll_no = ?";

@@ -24,7 +24,7 @@ public class Javaproject {
             double beforefee = resultSet.getDouble("beforefee");
             double afterfee = resultSet.getDouble("afterfee");
             
-            // Process the retrieved data as needed
+            //Process the  data as needed
             System.out.println("User Details:");
             System.out.println("Roll Number: " + roll_no);
             System.out.println("Password: " + password);
@@ -57,6 +57,7 @@ public class Javaproject {
                         calculatedFee = student.calculateFee();
                         break;
                 }
+               
             } else if (branch.equalsIgnoreCase("ELC") || branch.equalsIgnoreCase("EEE") ||
                     branch.equalsIgnoreCase("RA") || branch.equalsIgnoreCase("RAI")) {
                 Amrita student = null;
@@ -83,10 +84,7 @@ public class Javaproject {
             display_gui display = new display_gui();
             display.setVisible(true);
             display.appendText("User Details:" + "\n" +
-                               "Roll Number: " + roll_no + "\n" +
-                               "Password: " + password + "\n" +
-                               "School: " + school + "\n" +
-                               "Branch: " + branch + "\n" +
+                               "Roll Number: " + roll_no + "\n" +"Password: " + password + "\n" +"School: " + school + "\n" +"Branch: " + branch + "\n" +
                                "SGPA1: " + sgpa1 + "\n" +
                                "SGPA2: " + sgpa2 + "\n" +
                                "Before Fee: " + beforefee + "\n" +
@@ -98,7 +96,7 @@ public class Javaproject {
         } catch (SQLException e) {
             e.printStackTrace();
         } finally {
-            // Close the result set to release database resources
+            //  close the result set to release database resources
             if (resultSet != null) {
                 try {
                     resultSet.close();

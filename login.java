@@ -121,12 +121,10 @@ public class login extends javax.swing.JFrame {
     public void displayWrongCredentialsMessage() {
         JOptionPane.showMessageDialog(this, "Wrong username or password!!!", "Message", JOptionPane.ERROR_MESSAGE);
     }
-    // Getter for juser
     public JTextField getJuser() {
         return juser;
     }
 
-    // Getter for blogin
     public JButton getBlogin() {
         return blogin;
     }
