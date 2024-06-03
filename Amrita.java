@@ -8,8 +8,8 @@ abstract class Amrita {
     private double sgpa1;
     private double sgpa2;
     private String password;
-    double beforeFee;
-    double afterFee;
+    private double beforeFee;
+    private double afterFee;
 
     public Amrita(String roll_no, String password, String school, String branch, double sgpa1, double sgpa2, double beforeFee) {
         this.roll_no = roll_no;
@@ -92,7 +92,7 @@ abstract class Amrita {
     }
 
     protected void printBeforeFee() {
-        System.out.println("YOUR BEFORE FEE IS " + this.beforeFee);
+        System.out.println("YOUR BEFORE FEE IS " + getBeforeFee());
     }
 
     protected void printCGPA(double cgpa) {
