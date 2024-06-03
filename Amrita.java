@@ -1,7 +1,11 @@
 package com.mycompany.javaproject;
 import java.util.*;
 
-abstract class Amrita {
+interface FeeCalculable {
+    double calculateFee();
+}
+
+abstract class Amrita implements FeeCalculable {
     private String roll_no;
     private String school;
     private String branch;
@@ -85,14 +89,12 @@ abstract class Amrita {
         this.afterFee = afterFee;
     }
 
-    public abstract double calculateFee();
-
     protected double calculateCGPA() {
         return (sgpa1 + sgpa2) / 2;
     }
 
     protected void printBeforeFee() {
-        System.out.println("YOUR BEFORE FEE IS " + getBeforeFee());
+        System.out.println("YOUR BEFORE FEE IS " + this.beforeFee);
     }
 
     protected void printCGPA(double cgpa) {
